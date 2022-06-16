@@ -13,7 +13,7 @@ import me.iskak.argorithm.Bubble
 import kotlin.random.Random
 
 fun main() {
-    embeddedServer(Netty, port = 8084, host = "localhost") {
+    embeddedServer(Netty, port = 8084, host = "0.0.0.0") {
         install(WebSockets) {
             contentConverter = JacksonWebsocketContentConverter()
         }
