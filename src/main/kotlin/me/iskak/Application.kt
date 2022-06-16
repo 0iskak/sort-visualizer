@@ -3,7 +3,6 @@ package me.iskak
 import io.ktor.serialization.jackson.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
-import io.ktor.server.http.content.*
 import io.ktor.server.netty.*
 import io.ktor.server.routing.*
 import io.ktor.server.websocket.*
@@ -14,19 +13,12 @@ import me.iskak.argorithm.Bubble
 import kotlin.random.Random
 
 fun main() {
-    embeddedServer(Netty, port = 8084, host = "0.0.0.0") {
+    embeddedServer(Netty, port = 8084, host = "localhost") {
         install(WebSockets) {
             contentConverter = JacksonWebsocketContentConverter()
         }
 
         routing {
-            static {
-                resource("/", "index.html")
-                static("public") {
-                    resources("public")
-                }
-            }
-
             webSocket("/") {
                 try {
                     while (true) {
